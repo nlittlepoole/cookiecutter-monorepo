@@ -1,0 +1,29 @@
+{{define "add"}}
+<html>
+<head>
+	<title>Guessing Game</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/bulma.css">
+</head>
+<body>
+	<section class="section">
+	<div class="container">
+		<h1>Teach me!</h1>
+		<p>First tell me what you were thinking. Then, add a question that resolves to "yes" when asked in regard to what you were thinking.</p>
+
+		<p>For example, if I was thinking "peanut butter". My question might be, "do you put it on sandwiches?" </p>
+		<form action="/inject" method="GET">
+		  What were you thinking?:<br>
+		  <input type="hidden" name="key", value ="{{.Key}}">
+		  <input type="text" name="answer">
+		  <br>
+		  New Question:<br>
+		  <input type="text" name="value">
+		  <br><br>
+		  <input class="button is-success" type="submit" value="Submit">
+		</form> 
+	</div>
+	</section>
+</body>
+
+</html>
+{{end}}

@@ -1,0 +1,31 @@
+{{define "prompt"}}
+<html>
+<head>
+	<title>Guessing Game</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/bulma.css">
+</head>
+<body>
+	<section class="section">
+	<div class="container">
+		<h1>Question</h1>
+		<p>{{.Value}}</p>
+		<a class="button is-success" href="
+		{{if .YesKey}}
+		/prompt?key={{.YesKey}}
+		{{else}}
+		/success
+		{{end}}
+		">Yes</a>
+		<a class="button is-danger" href="
+		{{if .NoKey}}
+		/prompt?key={{.NoKey}}
+		{{else}}
+		/add?key={{.Key}}
+		{{end}}
+		">No</a>
+	</div>
+	</section>
+</body>
+
+</html>
+{{end}}
