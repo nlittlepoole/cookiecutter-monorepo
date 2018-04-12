@@ -11,7 +11,7 @@ env:
   - MICRO_SERVICE=guessing/game
 
 before_install:
-  - cd MICRO_SERVICE && docker build -t $MICRO_SERVICE ./
+  - cd $MICRO_SERVICE && docker build -t $MICRO_SERVICE ./
 
 script:
   - docker run -it $MICRO_SERVICE --entrypoint "make" $MICRO_SERVICE  test
