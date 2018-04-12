@@ -12,7 +12,7 @@ PORT?=80
 
 .PHONY: test
 
-all: setup build test run
+all: clean setup build test run
 
 travis: | setup build test codecov
 
@@ -36,5 +36,7 @@ codecov:
 clean: 
 		$(GOCLEAN)
 		rm -f $(BINARY_NAME)
+		rm -f *coverage.txt
+		rm -f *.coverprofile */*.coverprofile
 run:
 		./$(BINARY_NAME) -port=$(PORT)
