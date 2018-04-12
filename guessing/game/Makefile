@@ -14,7 +14,7 @@ PORT?=80
 
 all: clean setup build test run
 
-travis: | setup build test codecov
+travis: | setup build test coverage
 
 setup:
 		$(GOGET) -u github.com/stretchr/testify/assert github.com/go-playground/overalls
@@ -30,8 +30,9 @@ test:
 		$(GOVET)
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
-codecov:
-		curl -s https://codecov.io/bash | bash -
+codecoverage:
+		mv coverage.txt shared
+		
 
 clean: 
 		$(GOCLEAN)
