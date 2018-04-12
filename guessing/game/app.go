@@ -33,7 +33,7 @@ func main() {
 	e.Renderer = t
 	e.Static("/static", "static/")
 
-	api := controller.Api{model.NewFixtureBackend()}
+	api := controller.Controller{controller.NewFixtureBackend()}
 	api.Prepopulate()
 
 	e.GET("/", api.Home)
