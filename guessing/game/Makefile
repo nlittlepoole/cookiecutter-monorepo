@@ -31,7 +31,7 @@ test:
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
 codecov:
-		bash < (curl -s https://codecov.io/bash)
+		curl -s https://codecov.io/bash | bash -
 
 clean: 
 		$(GOCLEAN)
