@@ -31,7 +31,7 @@ test:
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
 codecoverage:
-		mv coverage.txt shared
+		mv coverage.txt /shared
 		
 
 clean: 
