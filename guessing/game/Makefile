@@ -30,7 +30,7 @@ test:
 		$(GOVET)
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
-codecoverage:
+coverage:
 		mv coverage.txt /shared
 		
 
