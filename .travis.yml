@@ -14,4 +14,4 @@ before_install:
   - cd $MICRO_SERVICE && docker build -t $MICRO_SERVICE ./
 
 script:
-  - docker run -it --entrypoint "make" $MICRO_SERVICE travis && mkdir shared && docker run -it -v "$PWD/shared:/shared"  --entrypoint "make" $MICRO_SERVICE coverage && curl -s https://codecov.io/bash | bash -
+  - mkdir shared & docker run -itv "$PWD/shared:/shared" --entrypoint "make" $MICRO_SERVICE travis && curl -s https://codecov.io/bash | bash -
