@@ -13,9 +13,4 @@ WORKDIR /go/src/github.com/nlittlepoole/cookiecutter-monorepo/guessing/game
 
 ENV PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
-RUN go get ./
-RUN go build -o app *.go
-
-CMD ./app
-
 EXPOSE 80

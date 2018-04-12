@@ -125,7 +125,7 @@ func (f FixtureBackend) GetPrompt(p *model.Prompt) (*model.Prompt, error) {
 	return nil, errors.New("Prompt with id " + p.Key + " not found")
 }
 
-// SetPrompt locks the map, adds a mapping to the pointer of the given object 
+// SetPrompt locks the map, adds a mapping to the pointer of the given object
 // based on key, and then returns FixtureBackend itself in Interface form
 func (f FixtureBackend) SetPrompt(p *model.Prompt) (Backend, error) {
 	f.mutex.Lock()
