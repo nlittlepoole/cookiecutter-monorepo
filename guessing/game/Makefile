@@ -26,6 +26,8 @@ build:
 		$(GOBUILD) -o $(BINARY_NAME) -v *.go
 test: 
 		${GOPATH}/bin/overalls -project=github.com/nlittlepoole/cookiecutter-monorepo -covermode=count -debug
+		mv overalls.coverprofile coverage.txt
+		bash <(curl -s https://codecov.io/bash)
 		$(GOVET)
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
