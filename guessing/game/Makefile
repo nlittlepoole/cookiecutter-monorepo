@@ -12,9 +12,9 @@ PORT?=80
 
 .PHONY: test
 
-all: setup build test run
+all: clean setup build test run
 
-travis: | setup build test
+travis: | setup build test coverage
 
 setup:
 		$(GOGET) -u github.com/stretchr/testify/assert github.com/go-playground/overalls
@@ -25,13 +25,19 @@ build:
 		$(GOGET) ./
 		$(GOBUILD) -o $(BINARY_NAME) -v *.go
 test: 
-		${GOPATH}/bin/overalls -project=github.com/nlittlepoole/cookiecutter-monorepo -covermode=count -debug
+		${GOPATH}/bin/overalls -project=github.com/nlittlepoole/cookiecutter-monorepo/guessing/game -covermode=count -debug 
+		mv overalls.coverprofile coverage.txt
 		$(GOVET)
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
+coverage:
+		mv coverage.txt /shared
+		
 
 clean: 
 		$(GOCLEAN)
 		rm -f $(BINARY_NAME)
+		rm -f *coverage.txt
+		rm -f *.coverprofile */*.coverprofile
 run:
 		./$(BINARY_NAME) -port=$(PORT)
