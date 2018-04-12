@@ -1,6 +1,7 @@
 FROM golang:alpine
 
 RUN apk add --update make
+RUN apk add --no-cache curl
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
