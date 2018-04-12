@@ -14,7 +14,7 @@ PORT?=80
 
 all: setup build test run
 
-travis: | setup build test
+travis: | setup build test codecov
 
 setup:
 		$(GOGET) -u github.com/stretchr/testify/assert github.com/go-playground/overalls
@@ -25,13 +25,13 @@ build:
 		$(GOGET) ./
 		$(GOBUILD) -o $(BINARY_NAME) -v *.go
 test: 
-		${GOPATH}/bin/overalls -project=github.com/nlittlepoole/cookiecutter-monorepo -covermode=count -debug
-		ls -a
+		${GOPATH}/bin/overalls -project=github.com/nlittlepoole/cookiecutter-monorepo/guessing/game -covermode=count -debug 
 		mv overalls.coverprofile coverage.txt
-		bash <(curl -s https://codecov.io/bash)
 		$(GOVET)
 		${GOPATH}/bin/golint ./...
 		${GOPATH}/bin/gocyclo -over 10 *.go */*.go
+codecov:
+		bash < (curl -s https://codecov.io/bash)
 
 clean: 
 		$(GOCLEAN)
