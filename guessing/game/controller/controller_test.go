@@ -14,7 +14,7 @@ func TestGetPrompt(t *testing.T) {
 	// Setup
 	e := echo.New()
 	e.Renderer = &Renderer{
-		Templates: template.Must(template.ParseGlob("../" + constants.VIEWS_TEMPLATES)),
+		Templates: template.Must(template.ParseGlob("../" + constants.ViewsTemplates)),
 	}
 
 	req := httptest.NewRequest(echo.GET, "/prompt/?key=0", nil)

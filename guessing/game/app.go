@@ -1,3 +1,4 @@
+// Binary libgame accepts port flags, builds server and runs game serving static assets
 package main
 
 import (
@@ -11,24 +12,28 @@ import (
 	"html/template"
 )
 
+// init instantiates the logrus logformatter in JSON format
 func init() {
 	logrus.SetFormatter(&logrus.JSONFormatter{})
 }
 
+// main parses command line arguments, instantiates the server, and sets routes
 func main() {
 	port := flag.Int("port", 80, "The Port to serve the game from")
 	flag.Parse()
 
 	e := echo.New()
-	e.Logger = logrusmiddleware.Logger{logrus.StandardLogger()}
+	middleware := logrusmiddleware.Logger{}
+	middleware.Logger = logrus.StandardLogger()
+	e.Logger = middleware
 	e.Use(logrusmiddleware.Hook())
 
 	e.Renderer = &controller.Renderer{
-		Templates: template.Must(template.ParseGlob(constants.VIEWS_TEMPLATES)),
+		Templates: template.Must(template.ParseGlob(constants.ViewsTemplates)),
 	}
 	e.Static("/static", "static/")
 
-	api := controller.Controller{controller.NewFixtureBackend()}
+	api := controller.Controller{Backend: controller.NewFixtureBackend()}
 	api.Prepopulate()
 
 	e.GET("/", api.Home)
