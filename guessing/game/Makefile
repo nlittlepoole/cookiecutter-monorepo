@@ -14,6 +14,8 @@ PORT?=80
 
 all: setup build test run
 
+travis: setup test
+
 setup:
 		$(GOGET) -u github.com/stretchr/testify/assert github.com/go-playground/overalls
 		$(GOGET) -u golang.org/x/lint/golint

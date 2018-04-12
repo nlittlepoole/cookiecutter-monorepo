@@ -14,4 +14,4 @@ before_install:
   - cd $MICRO_SERVICE && docker build -t $MICRO_SERVICE ./
 
 script:
-  - docker run -it --entrypoint "make" $MICRO_SERVICE test
+  - docker run -it --entrypoint "make" $MICRO_SERVICE travis
