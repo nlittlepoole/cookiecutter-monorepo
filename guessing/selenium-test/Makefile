@@ -2,6 +2,7 @@
 PYTHONCMD=python3
 PIP=pip3
 
+
 .PHONY: test
 
 all: | setup run

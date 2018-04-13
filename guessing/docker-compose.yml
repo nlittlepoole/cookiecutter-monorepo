@@ -2,8 +2,6 @@ version: '3'
 services:
   selenium-hub:
     image: selenium/hub
-    ports:
-      - 4444:4444
     environment:
       - SELENIUM_HUB_HOST=selenium-hub
       - SELENIUM_HUB_PORT=4444
@@ -17,8 +15,6 @@ services:
     depends_on:
       - selenium-hub
     privileged: true
-    ports:
-      - 6081:26080
     environment:
       HUB_HOST: selenium-hub
 
