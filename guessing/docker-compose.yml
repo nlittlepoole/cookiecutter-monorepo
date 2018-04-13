@@ -1,0 +1,46 @@
+version: '3'
+services:
+  selenium-hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444
+    environment:
+      - SELENIUM_HUB_HOST=selenium-hub
+      - SELENIUM_HUB_PORT=4444
+      - GRID=true
+      - CHROME=false
+      - FIREFOX=false
+
+
+  firefox:
+    image: selenium/node-firefox
+    depends_on:
+      - selenium-hub
+    privileged: true
+    ports:
+      - 6081:26080
+    environment:
+      HUB_HOST: selenium-hub
+
+  pytest:
+    build:
+      context: ./selenium-test
+    depends_on:
+      - selenium-hub
+      - firefox
+      - game
+    environment:
+      HUB_HOST: selenium-hub
+      GAME_HOST: game
+    entrypoint:
+      - make
+      - all
+
+  game:
+    build:
+      context: ./game
+    ports:
+      - 8080:80
+    entrypoint:
+      - make
+      - integration

@@ -14,6 +14,8 @@ PORT?=80
 
 all: clean setup build test run
 
+integration: setup build run
+
 travis: | setup build test coverage
 
 setup:
