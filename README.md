@@ -20,7 +20,7 @@ The debate about the difference between Microservice Architecture and Service Or
 
 The above demonstrates how I conceptualize services and micro-services in a mock ridesharing app. The individual rectangles such as `Billing`, `Notification`, etc are micro-services. A Service is an abstraction on top of a combination of micro-services. The green diamond around them represents a service, in this case a `User Service`. There may be another Service, like a `Dispatch Service`, that has its own micro services such as `Pricing`, `Routing`, etc. Boundaries between the `User Service` and `Dispatch Service` are explicit. The micro-services in one can't arbitrarily call the micro-services in another. Only a subset of endpoints will be exposed, usually through an API gateway, to each other. 
 
-## How to Add a Service to the REpo
+## How to Add a Service to the Repo
 
 ### Add a Service Directory
 The following is the directory structure expected of any service in the repository
