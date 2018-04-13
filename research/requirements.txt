@@ -1,0 +1,1 @@
+jupyterthemes==0.19.0
