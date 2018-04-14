@@ -1,2 +1,4 @@
 *.coverprofile
 *coverage.txt
+*.env_file
+*.ipynb_checkpoints/
