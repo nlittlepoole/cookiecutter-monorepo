@@ -9,7 +9,8 @@ ENV_FILE?=.env_file
 
 all: | build run
 
-setup:	;
+setup:
+		touch .env_file
 build:
 		$(DOCKERCMD) build -t $(TAG) ./
 test:	;
